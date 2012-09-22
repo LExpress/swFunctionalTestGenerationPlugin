@@ -1,0 +1,16 @@
+{
+    "name": "lexpress/sw-functional-test-generation-plugin",
+    "type": "symfony1-plugin",
+    "description": "Add functional test generation to the symfony framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Rabaix",
+            "email": "thomas.rabaix@soleoweb.com",
+            "role": "Creator"
+        }
+    ],
+    "require": {
+        "composer/installers": "*"
+    }
+}
