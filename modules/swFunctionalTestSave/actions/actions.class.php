@@ -21,10 +21,20 @@ class swFunctionalTestSaveActions extends sfActions
 {
   public function executeSaveTest($request)
   {
+    $testDir = sfConfig::get('sf_test_dir')."/functional/".sfConfig::get('sf_app');
+    if (!is_dir($testDir))
+    {
+      mkdir($testDir, 0777, true);
+    }
+
     $testName = $request->getParameter('test_name');
     $testContent = $request->getParameter('test_content');
-    $fileName = sfConfig::get('sf_test_dir')."/functional/".sfConfig::get('sf_app')."/".$testName."Test.php";
+    $fileName = $testDir.'/'.$testName."Test.php";
+
     file_put_contents($fileName, $testContent);
-    $this->redirect('/');
+
+    $url = str_replace('?_sw_func_enabled=1', '', $request->getReferer()).'?_sw_func_enabled=0';
+
+    $this->redirect($url);
   }
 }
