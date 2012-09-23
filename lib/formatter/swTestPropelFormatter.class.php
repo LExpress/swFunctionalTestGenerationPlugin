@@ -16,8 +16,10 @@
  * @author     Sebastian Schmidt <info@schmidt-seb.de>
  * @version    SVN: $Id$
  */
-class swTestPropelFormatter extends swTestFunctionalFormatter {
-  public function getHeader() {
+class swTestPropelFormatter extends swTestFunctionalFormatter
+{
+  public function getHeader()
+  {
     return '<?php
 
 include(dirname(__FILE__).\'/../../bootstrap/functional.php\');
@@ -29,7 +31,8 @@ $conn    = Propel::getConnection();
 $conn->beginTransaction();';
   }
 
-  public function getFooter() {
+  public function getFooter()
+  {
     return '$conn->rollback();';
   }
 }

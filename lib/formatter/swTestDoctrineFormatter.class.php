@@ -16,20 +16,23 @@
  * @author     Sebastian Schmidt <info@schmidt-seb.de>
  * @version    SVN: $Id$
  */
-class swTestDoctrineFormatter extends swTestFunctionalFormatter {
-  public function getHeader() {
+class swTestDoctrineFormatter extends swTestFunctionalFormatter
+{
+  public function getHeader()
+  {
     return '<?php
 
 include(dirname(__FILE__).\'/../../bootstrap/functional.php\');
 
 $browser = new sfTestFunctional(new sfBrowser());
 $test    = $browser->test();
-$conn    = Doctrine::getConnectionByTableName(\'your_model\');
+$conn    = Doctrine_Core::getConnectionByTableName(\'your_model\');
 
 $conn->beginTransaction();';
   }
 
-  public function getFooter() {
+  public function getFooter()
+  {
     return '$conn->rollback();';
   }
 }

@@ -47,15 +47,15 @@ class swFilterFunctionalTest extends sfFilter
       {
         preg_match('/alt=(\'|")([^$1]*)(\'|")/i', $link_content, $alt_result);
 
-        if(isset($alt_result[2])) 
+        if(isset($alt_result[2]))
         {
           $link_content = $alt_result[2];
         }
-      } 
+      }
 
-      if(trim($link_content) != 0) 
-      { 
-        $link .= '_sw_func_link=' . $link_content; 
+      if(trim($link_content) != 0)
+      {
+        $link .= '_sw_func_link=' . $link_content;
       }
     }
 
@@ -68,7 +68,7 @@ class swFilterFunctionalTest extends sfFilter
       $matches[6]
     );
   }
-  
+
   public function execute($filterChain)
   {
 
@@ -77,7 +77,7 @@ class swFilterFunctionalTest extends sfFilter
     $request   = $this->context->getRequest();
     $response  = $this->context->getResponse();
     $user      = $this->context->getUser();
-    
+
     $is_first_call = $this->isFirstCall();
     if($is_first_call)
     {
@@ -123,7 +123,7 @@ class swFilterFunctionalTest extends sfFilter
     $route = $this->context->getRouting()->getCurrentInternalUri();
 
     $url = $request->getPathInfo();
-    
+
     if($is_first_call)
     {
       if($from_link = $request->getParameter('_sw_func_link'))
@@ -158,7 +158,7 @@ class swFilterFunctionalTest extends sfFilter
         $this->raw("\$browser");
         $this->create('call', $url, $request->getMethod(), $this->getVarsFromRequest($request));
         $this->raw(
-          "  /* " . 
+          "  /* " .
           $this->createPHP('get', $url) . "\n" .
           $this->createPHP('click', 'alt or value of submit here', $this->getVarsFromRequest($request)) .
           " */ "
@@ -181,16 +181,16 @@ class swFilterFunctionalTest extends sfFilter
       $this->raw(";\n\n");
       $this->raw("\$browser");
     }
-    
-    $this->with('request');    
+
+    $this->with('request');
       if(!$is_first_call || $this->context->getActionStack()->getSize() > 1)
       {
         $this->create('isForwardedTo', $action->getModuleName(), $action->getActionName());
-      } 
+      }
       else
       {
         $this->create('isParameter', 'module', $action->getModuleName());
-        $this->create('isParameter', 'action', $action->getActionName());        
+        $this->create('isParameter', 'action', $action->getActionName());
       }
     $this->end();
 
@@ -205,7 +205,7 @@ class swFilterFunctionalTest extends sfFilter
     $this->with('response');
       $this->create('isStatusCode', $response->getStatusCode());
     $this->end();
-    
+
     $this->raw(";\n\n");
 
     $content = $response->getContent();
@@ -223,12 +223,12 @@ class swFilterFunctionalTest extends sfFilter
     $vars = $request->getParameterHolder()->getAll();
 
     $vars = $this->fixCSRF($vars);
-    
+
     unset(
       $vars['module'],
       $vars['action']
     );
-    
+
     return $vars;
   }
 
@@ -246,7 +246,7 @@ class swFilterFunctionalTest extends sfFilter
     {
       unset($vars[$name]);
     }
-    
+
     foreach($vars as $name => $var)
     {
       if(is_array($var))
@@ -257,7 +257,7 @@ class swFilterFunctionalTest extends sfFilter
 
     return $vars;
   }
-  
+
   public function with($name)
   {
     $this->with = $name;
@@ -275,7 +275,7 @@ class swFilterFunctionalTest extends sfFilter
 
   private function raw($code, $rl = null)
   {
-     
+
     if(is_null($rl) && substr($code, -1) != "\n")
     {
       $rl = "\n";
@@ -332,20 +332,20 @@ class swFilterFunctionalTest extends sfFilter
     $args = func_get_args();
     $this->raw(call_user_func_array(array($this, 'createPHP'), $args));
   }
-  
+
   public function fixSfGuard()
   {
     $referer = $this->context->getUser()->getAttribute('referer');
-    
+
     if(!is_null($referer))
     {
       $replace = array(
         '_sw_func_enabled=1',
         '_sw_func_reset=1'
       );
-      
+
       $by = array('', '');
-      
+
       $referer = str_replace($replace, $by, $referer);
       $this->context->getUser()->setAttribute('referer', $referer);
     }

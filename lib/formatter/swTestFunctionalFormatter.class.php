@@ -16,11 +16,13 @@
  * @author     Sebastian Schmidt <info@schmidt-seb.de>
  * @version    SVN: $Id$
  */
-abstract class swTestFunctionalFormatter {
+abstract class swTestFunctionalFormatter
+{
   abstract public function getHeader();
   abstract public function getFooter();
 
-  public function build($tests) {
-    return htmlspecialchars($this->getHeader() . "\n" . $tests . "\n" . $this->getFooter(), ENT_COMPAT, 'UTF-8');
+  public function build($tests)
+  {
+    return htmlspecialchars($this->getHeader() . "\n\n" . $tests . (!empty($tests) ? ";\n" : '') . "\n" . $this->getFooter(), ENT_COMPAT, 'UTF-8');
   }
 }
