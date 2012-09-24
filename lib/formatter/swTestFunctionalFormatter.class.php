@@ -23,6 +23,6 @@ abstract class swTestFunctionalFormatter
 
   public function build($tests)
   {
-    return htmlspecialchars($this->getHeader() . "\n\n" . $tests . (!empty($tests) ? ";\n" : '') . "\n" . $this->getFooter(), ENT_COMPAT, 'UTF-8');
+    return htmlspecialchars($this->getHeader() . "\n\n" . $tests . (!empty($tests) ? ";\n" : '') . "\n" . $this->getFooter(), ENT_COMPAT, sfConfig::get('sf_charset'));
   }
 }
