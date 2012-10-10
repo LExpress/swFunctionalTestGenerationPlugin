@@ -1,0 +1,5 @@
+sw_functional_test_save:
+  url: /swFunctionalTestSave/saveTest
+  params:
+    module:       swFunctionalTestSave
+    action:       saveTest

@@ -47,7 +47,7 @@ class swFunctionalUnitTestDebugPanel extends sfWebDebugPanel
       throw new InvalidArgumentException('invalid formatter');
     }
 
-    sfContext::getInstance()->getConfiguration()->loadHelpers('Url');
+    $url = sfContext::getInstance()->getController()->genUrl(array('sf_route' => 'sw_functional_test_save'));
 
     return '
       <div id="sfDebugPanelFunctionalUnitTest"><div style="float:left">'.
@@ -55,7 +55,7 @@ class swFunctionalUnitTestDebugPanel extends sfWebDebugPanel
       (!sfContext::getInstance()->getUser()->getAttribute('sw_func_enabled', false, 'swToolbox') ?
       "<a href='?_sw_func_enabled=1'>Activate</a>" :
       "<a href='?_sw_func_enabled=0'>Deactivate</a>")
-      .'<br /><form action="'.url_for('swFunctionalTestSave/saveTest').'" method="post" ><textarea name="test_content" style="width:500px; height: 200px; font-family:courier">'
+      .'<br /><form action="'.$url.'" method="post" ><textarea name="test_content" style="width:500px; height: 200px; font-family:courier">'
       .$formatter->build(swFilterFunctionalTest::getRawPhp()).
       '</textarea>
       <br/>

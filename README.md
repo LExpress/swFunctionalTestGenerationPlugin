@@ -23,6 +23,13 @@ Please read the original blog post : [swFilterFunctionalTest](http://rabaix.net/
         functional_test:
           class: swFilterFunctionalTest
 
+* Enable module `swFunctionalTestSave` in your settings.yml
+
+        [yml]
+        .settings
+          enabled_modules
+            - swFunctionalTestSave
+
 * Make sure the debug panel is enabled
 
 
