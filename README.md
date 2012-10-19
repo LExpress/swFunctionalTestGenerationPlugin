@@ -10,12 +10,13 @@ Please read the original blog post : [swFilterFunctionalTest](http://rabaix.net/
 
 * Install swFunctionalTestGenerationPlugin
 
+  - via composer : require": { "lexpress/sw-functional-test-generation-plugin": "*" }
   - via svn : http://svn.symfony-project.com/plugins/swFunctionalTestGenerationPlugin/tags/VERSION_1_2_0
   - via pear : ./symfony plugin:install --release=1.2.0 swFunctionalTestGenerationPlugin
 
 * Clear your cache
 
-  - ./symfony cc
+  - php symfony cc
 
 * Edit the filters.yml file and add these configuration lines after the rendering filter
 
@@ -39,4 +40,8 @@ Please read the original blog post : [swFilterFunctionalTest](http://rabaix.net/
 
 * Perform a scenario on your project
 
-* once done, copy-paste the generated code into a test file
+* once done, copy-paste the generated code into a test file or save it via the form
+
+## Know issue
+
+* When you perform an ajax request, do an http request or reload your page just after to see your ajax request in the generated code
