@@ -16,20 +16,22 @@ Please read the original blog post : [swFilterFunctionalTest](http://rabaix.net/
 
 * Clear your cache
 
-  - php symfony cc
+        php symfony cc
 
 * Edit the filters.yml file and add these configuration lines after the rendering filter
 
-        [yml]
-        functional_test:
-          class: swFilterFunctionalTest
+    ````yml
+    functional_test:
+      class: swFilterFunctionalTest
+    ````
 
 * Enable module `swFunctionalTestSave` in your settings.yml
 
-        [yml]
-        .settings
-          enabled_modules
-            - swFunctionalTestSave
+    ````yml
+    .settings
+      enabled_modules:
+        - swFunctionalTestSave
+    ````
 
 * Make sure the debug panel is enabled
 
@@ -37,9 +39,7 @@ Please read the original blog post : [swFilterFunctionalTest](http://rabaix.net/
 ## Usage
 
 * Enable the functional test in the debug bar
-
 * Perform a scenario on your project
-
 * once done, copy-paste the generated code into a test file or save it via the form
 
 ## Know issue
