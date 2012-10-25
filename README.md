@@ -11,8 +11,7 @@ Please read the original blog post : [swFilterFunctionalTest](http://rabaix.net/
 * Install swFunctionalTestGenerationPlugin
 
   - via composer : require": { "lexpress/sw-functional-test-generation-plugin": "*" }
-  - via svn : http://svn.symfony-project.com/plugins/swFunctionalTestGenerationPlugin/tags/VERSION_1_2_0
-  - via pear : ./symfony plugin:install --release=1.2.0 swFunctionalTestGenerationPlugin
+  - via git : https://github.com/LExpress/swFunctionalTestGenerationPlugin.git
 
 * Clear your cache
 
